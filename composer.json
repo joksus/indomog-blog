@@ -1,0 +1,15 @@
+{
+    "name": "indomog/blog",
+    "description": "Indomog Blog",
+    "license": "private",
+    "authors": [
+        {
+            "name": "Indomog Jogja",
+            "email": "it.jogja@indomog.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+
+    }
+}
