@@ -12,6 +12,7 @@
 */
 
 Route::get('post', 'PostController@getIndex');
+
 Route::post('post', 'PostController@postNew');
 Route::post('post/delete', 'PostController@postDelete');
 Route::post('post/edit', 'PostController@postEdit');
