@@ -12,6 +12,7 @@ class PostController extends BaseController
 		foreach($post as $p)
 		{
 			$bulkPost[$i] = array (
+				'id' => $p->id,
 				'title' => $p->title,
 				'author' => $p->author,
 				'body_content' => $p->body_content

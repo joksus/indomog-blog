@@ -12,6 +12,7 @@ class CommentController extends BaseController
 
 		foreach($comment as $c){
 			$listComment[$i] = array (
+				'id' => $c->id,
 				'id_post' => $c->id_post,
 				'comment' => $c->comment
 			);
