@@ -26,7 +26,7 @@ class CommentController extends BaseController
 	{
 		$comment = new Comment();
 
-		$comment->id_post = Input::get('id_post');
+		$comment->post_id = Input::get('id_post');
 		$comment->comment = Input::get('comment');
 		
 
