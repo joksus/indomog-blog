@@ -21,4 +21,10 @@ Route::get('comment', 'CommentController@getComment');
 Route::post('comment', 'CommentController@postComment');
 
 Route::post('login', 'LoginController@login');
+
+
+
+
+
 Route::get('login', 'LoginControl@showLogin');
+Route::get('post/add', 'PostControl@showAddPost');
