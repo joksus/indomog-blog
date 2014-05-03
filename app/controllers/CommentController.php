@@ -15,6 +15,7 @@ class CommentController extends BaseController
 
 		foreach($comment as $c){
 			$listComment[$i] = array (
+				'id' => $c->id,
 				'id_post' => $c->id_post,
 				'comment' => $c->comment
 			);
@@ -28,6 +29,7 @@ class CommentController extends BaseController
 	{
 		$comment = new Comment();
 
+		$comment->id = Input::get('id');
 		$comment->id_post = Input::get('id_post');
 		$comment->comment = Input::get('comment');
 		
