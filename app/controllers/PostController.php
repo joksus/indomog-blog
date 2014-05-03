@@ -4,8 +4,8 @@ class PostController extends BaseController
 {
 	public function getIndex()
 	{
-		$post = Post::all();
-
+		$post = Post::with('comments')->get();
+		//echo '<pre>', print_r($post->toArray()), '</pre>'; die;
 		$bulkPost = array();
 
 		$i=0;
@@ -15,12 +15,14 @@ class PostController extends BaseController
 				'id' => $p->id,
 				'title' => $p->title,
 				'author' => $p->author,
-				'body_content' => $p->body_content
+				'body_content' => $p->body_content,
+				'comments'	=> $p->comments->toArray(),
 			);
+
 			$i++;
 		}
 
-		
+		//echo '<pre>', print_r($bulkPost), '</pre>'; die;
 		return $bulkPost; 
 	}
 
