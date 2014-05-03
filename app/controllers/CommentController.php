@@ -1,5 +1,8 @@
 <?php
 
+/**
+* class CommentController
+*/
 class CommentController extends BaseController
 {
 	public function getComment()
