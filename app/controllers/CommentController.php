@@ -1,7 +1,15 @@
 <?php
 
+/**
+*this is class ComentController
+* author biyono
+*/
 class CommentController extends BaseController
 {
+	/**
+	 * function getComment
+	 * return $listComment type string
+	 */
 	public function getComment()
 	{
 		$comment = Comment::all();
@@ -21,6 +29,10 @@ class CommentController extends BaseController
 		return $listComment;
 	}
 
+	/**
+	 * function postComment
+	 * return status type boolean
+	 */
 	public function postComment()
 	{
 		$comment = new Comment();
