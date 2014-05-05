@@ -33,3 +33,4 @@ Route::get('login', 'LoginControl@showLogin');
 Route::post('auth', 'LoginControl@authen');
 
 Route::get('post/add', 'PostControl@showAddPost');
+Route::post('post/add', 'PostControl@savePost');
