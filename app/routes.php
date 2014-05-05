@@ -30,6 +30,6 @@ Route::post('login', 'LoginController@login');
 Route::get('regis','RegistrasiControl@Registrasi');
 Route::post('store','RegistrasiControl@store');
 Route::get('login', 'LoginControl@showLogin');
-Route::get('auth', 'LoginControl@authen');
+Route::post('auth', 'LoginControl@authen');
 
 Route::get('post/add', 'PostControl@showAddPost');

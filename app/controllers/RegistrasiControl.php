@@ -37,7 +37,7 @@ class RegistrasiControl extends \BaseController {
 		$login->email=Input::get('email');
 
 		$login->save();
-		return Redirect::to('regis')->with('pesan','Registrasi berhasil');
+		return Redirect::to('login')->with('pesan','Registrasi berhasil');
 	}
 
 

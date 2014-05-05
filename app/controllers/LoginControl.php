@@ -17,14 +17,9 @@ class LoginControl extends BaseController
 					   ->first();
 
 		if($login){
-			return array(
-				'status' => true,
-				'email' => $login->email
-			);
+			return Redirect::to('post');
 		} else {
-			return array(
-			'status' => false
-			);
+			return Redirect::to('login')->with('pesan','Login gagal,username atau password salah');
 		}
 	}
 }
