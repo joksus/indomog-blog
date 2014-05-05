@@ -15,7 +15,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="http://blog.local/new">New Post</a>
                     </li>
-                    <li><a href="http://blog.local/logout">Log out</a>
+                    <li><a href="http://blog.local/">Log out</a>
                     </li>
                 </ul>
             </div>

@@ -24,7 +24,7 @@ class IndexController extends BaseController
 		$post->body_content = Input::get('body_content');
 
 		if($post->save()){
-			return Redirect::to('/');
+			return Redirect::to('admin');
 		} 
 	}
 
@@ -42,7 +42,7 @@ class IndexController extends BaseController
 		$post->body_content = Input::get('body_content');
 
 		if($post->save()){
-			return Redirect::to('/');
+			return Redirect::to('admin');
 		} 
 	}
 
@@ -52,7 +52,7 @@ class IndexController extends BaseController
 		$post = Post::find($id);
 
 		if($post->delete()){
-			return Redirect::to('/');
+			return Redirect::to('admin');
 		}
 	}
 
