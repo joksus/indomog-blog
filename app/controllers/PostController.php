@@ -4,7 +4,7 @@ class PostController extends BaseController
 {
 	public function getIndex()
 	{
-		$post = Post::with('comments')->get();
+		$post = Post::with('comments')->orderBy('id', 'DESC')->get();
 		//echo '<pre>', print_r($post->toArray()), '</pre>'; die;
 		$bulkPost = array();
 

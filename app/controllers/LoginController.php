@@ -20,10 +20,6 @@ class LoginController extends BaseController
 			return array(
 			'status' => false
 			);
-		}
-
-		
-
-		
+		}	
 	}
 }
