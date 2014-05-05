@@ -4,7 +4,7 @@ class PostController extends BaseController
 {
 	public function getIndex()
 	{
-		$post = Post::all();
+		$post = Post::with('comment')->get();
 
 		$bulkPost = array();
 
@@ -12,9 +12,11 @@ class PostController extends BaseController
 		foreach($post as $p)
 		{
 			$bulkPost[$i] = array (
+				'id'  => $p->id,
 				'title' => $p->title,
 				'author' => $p->author,
-				'body_content' => $p->body_content
+				'body_content' => $p->body_content,
+				'comment' => $p->comment->toArray(),
 			);
 			$i++;
 		}
