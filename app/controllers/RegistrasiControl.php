@@ -31,13 +31,19 @@ class RegistrasiControl extends \BaseController {
 	 */
 	public function store()
 	{
+
 		$login = new Login();
 		$login->username=Input::get('username');
 		$login->password=Input::get('password');
 		$login->email=Input::get('email');
+		if(($login->username || $login->password || $login->email)!=null ){
+			$login->save();
+			return Redirect::to('login')->with('pesan','Registrasi berhasil');
+		}else{
+			return Redirect::to('regis')->with('pesan','Registrasi gagal');
+		}
 
-		$login->save();
-		return Redirect::to('login')->with('pesan','Registrasi berhasil');
+		
 	}
 
 

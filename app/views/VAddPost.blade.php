@@ -17,9 +17,10 @@
 	{{Form::textarea('body_content')}}
 	<br>
 	{{Form::submit('save')}}
-	{{Form::reset('reset')}}
+	{{Form::close() }}
+	{{Form::open(array('action' => 'PostControl@showHomeBlog', 'method' => 'get')) }}
+	{{Form::submit('Home')}}
+	{{Form::close() }}
 </center>
-
-
 </body>
 </html>

@@ -15,6 +15,39 @@ class PostControl extends BaseController
 		$post->body_content = Input::get('body_content');
 
 		if($post->save()){
+			return View::make('VHomeBlog');
+		} 
+
+		return array(
+			'status' => false
+		);
+
+	}
+
+	public function showHome()
+	{
+		$post = Post::with('comment')->orderBy('id', 'ASC')->get();
+		return View::make('VHome',compact('post'));
+	}
+
+	public function showHomeBlog()
+	{
+		$post = Post::with('comment')->orderBy('id', 'ASC')->get();
+		return View::make('VHomeBlog',compact('post'));
+	}
+
+	public function showEdit()
+	{
+		return View::make('VPostEdit');
+	}
+
+	public function editPost()
+	{
+		$id = Input::get('id');
+		$post = Post::find($id);
+
+		$post->body_content = Input::get('body_content');
+		if($post->save()){
 			return array(
 				'status' => true
 			);
@@ -23,7 +56,6 @@ class PostControl extends BaseController
 		return array(
 			'status' => false
 		);
-
 	}
 	
 }

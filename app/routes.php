@@ -27,10 +27,18 @@ Route::post('login', 'LoginController@login');
 
 
 
+
 Route::get('regis','RegistrasiControl@Registrasi');
 Route::post('store','RegistrasiControl@store');
 Route::get('login', 'LoginControl@showLogin');
 Route::post('auth', 'LoginControl@authen');
 
+Route::get('home','PostControl@showHomeBlog');
+Route::get('/','PostControl@showHome');
 Route::get('post/add', 'PostControl@showAddPost');
 Route::post('post/add', 'PostControl@savePost');
+Route::get('comment/add', 'CommentControl@addComment');
+Route::post('comment/add', 'CommentControl@addComment');
+Route::get('pos/edit', 'PostControl@showEdit');
+Route::post('pos/edit', 'PostControl@editPost');
+Route::get('edit', array('as' => 'edit', 'uses' => 'PostControl@showEdit'));

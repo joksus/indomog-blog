@@ -17,7 +17,7 @@ class LoginControl extends BaseController
 					   ->first();
 
 		if($login){
-			return Redirect::to('post');
+			return Redirect::to('home');
 		} else {
 			return Redirect::to('login')->with('pesan','Login gagal,username atau password salah');
 		}

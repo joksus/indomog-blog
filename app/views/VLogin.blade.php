@@ -4,20 +4,31 @@
 	<title>Login</title>
 </head>
 <body>
-<h2 align="center">Silahkan Login</h2>
 <center>
-@if(Session::has('pesan_error'))
-<div class="alert alert-danger">{{ Session::get('pesan_error') }}</div>
-@endif
+	<h2>Silahkan Login</h2>
+	@if(Session::has('pesan'))
+	<div class="alert alert-success">{{ Session::get('pesan') }}</div>
+	@endif
+</center>
+<table align="center">
 {{Form::open(array('action' => 'LoginControl@authen', 'method' => 'post')) }}
-{{Form::label('username', 'Username') }}
-{{Form::text('username')}}
-<br>
-{{Form::label('password', 'Password') }}
-{{Form::password('password')}}
-<br>
-{{Form::submit('Login') }}
-{{Form::close() }}
+
+	<tr>
+		<td>{{Form::label('username', 'Username') }}</td>
+		<td>{{Form::text('username',Input::old('username'),array('placeholder'=>'Input your username'))}}</td>
+	</tr>
+	<tr>
+		<td>{{Form::label('password', 'Password') }}</td>
+		<td>{{Form::password('password',array('placeholder'=>'Input your password'))}}</td>
+	</tr>
+	<tr>
+		<td align="right">{{Form::submit('Login') }}</td>
+		<td align="right"><a href="http://localhost/indomog-blog/public/">Home</a></td>
+	</tr>
+	{{Form::close() }}
+	
+</table>
+
 </center>
 </body>
 </html>
