@@ -20,3 +20,27 @@ Route::get('comment', 'CommentController@getComment');
 Route::post('comment', 'CommentController@postComment');
 
 Route::post('login', 'LoginController@login');
+Route::get('/register', function()
+{
+	return View::make('register');
+});
+
+
+Route::post('register', 'RegisterController@register');
+
+
+Route::get('/login', function()
+{
+	return View::make('login');
+});
+
+Route::post('login', 'LoginController@login');
+
+
+
+Route::get('/artikel', function()
+{
+	return View::make('artikel');
+});
+
+Route::post('artikel', 'ArtikelController@artikel');
