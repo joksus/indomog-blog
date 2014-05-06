@@ -46,8 +46,3 @@ Route::get('/artikel', function()
 
 Route::post('artikel', 'ArtikelController@artikel');
 
-Route::get('artikellist', function()
-{
-	$artikel = artikel::all();
-	return View::make('listartikel')->with('artikeldata', $artikel);
-});
