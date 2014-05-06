@@ -2,13 +2,14 @@
 
 class LoginController extends BaseController
 {
+	
 	public function login()
 	{
 		$validator = Validator::make(
         Input::all(),
         array(
-            "username"                 => "required",
-            "password"              => "required",
+            'username'                 => 'required',
+            'password'             	   => 'required',
         )
         );
 
@@ -20,12 +21,12 @@ class LoginController extends BaseController
 					   ->first();
 
 		if($login){
-			return Redirect::to("artikel");
+			return Redirect::to('artikel');
 
 
 		} 
 		else {
-			return Redirect::to("login")
+			return Redirect::to('login')
             ->withErrors($validator)
             ->withInput();
 		}

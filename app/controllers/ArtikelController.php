@@ -9,12 +9,13 @@ class ArtikelController extends BaseController
         array(
             "title"                 => "required",
             "author"              => "required",
-            "body_content"			=> "required",
+            "body_content"              => "required",
         )
     );
 
 	if($validator->passes())
 	{
+
 		$artikel = new artikel();
     	$artikel->title    = Input::get('title');
     	$artikel->author = Input::get('author');

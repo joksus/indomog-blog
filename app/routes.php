@@ -33,7 +33,7 @@ Route::post('register', 'RegisterController@register');
 Route::get('/login', function()
 {
 	return View::make('login');
-});
+}); 
 
 Route::post('login', 'LoginController@login');
 
@@ -45,3 +45,9 @@ Route::get('/artikel', function()
 });
 
 Route::post('artikel', 'ArtikelController@artikel');
+
+Route::get('artikellist', function()
+{
+	$artikel = artikel::all();
+	return View::make('listartikel')->with('artikeldata', $artikel);
+});

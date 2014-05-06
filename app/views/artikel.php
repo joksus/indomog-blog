@@ -20,7 +20,7 @@
             <h3>Tulis Artikel</h3>
             <label>
                 Judul Artikel <span class="error"><?php echo $errors->first('title') ?></span>
-                <input type="text" name="judul" value="<?php echo Form::old('title') ?>" class="width-50" />
+                <input type="text" name="title" value="<?php echo Form::old('title') ?>" class="width-50" />
             </label>
              <label>
                 Author <span class="error"><?php echo $errors->first('author') ?></span>
@@ -28,7 +28,7 @@
             </label>
             <label>
                 Isi Artikel <span class="error"><?php echo $errors->first('body_content') ?></span>
-                <textarea name="mytextarea" class="width-50" />
+                <input type="text" name="body_content" value="<?php echo Form::old('body_content') ?>" class="width-50" />
 						
 				</textarea>
             </label>
