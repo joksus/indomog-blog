@@ -9,19 +9,29 @@ class PostControl extends BaseController
 
 	public function savePost()
 	{
+		$validator = Validator::make(
+			Input::all(),
+			
+			array(
+    			'title' => 'required|min:3',
+    			'author' =>'required|min:3',
+    			'body_content' => 'required|min:10'
+    			)
+			);
+		if($validator->fails()){
+			return Redirect::to('post/add')->withErrors($validator);
+		}else{
 		$post = new Post();
 		$post->title= Input::get('title');
 		$post->author = Input::get('author');
 		$post->body_content = Input::get('body_content');
 
 		if($post->save()){
-			return View::make('VHomeBlog');
+			$post = Post::with('comment')->orderBy('id', 'ASC')->get();
+			return View::make('VHomeBlog',compact('post'));
 		} 
 
-		return array(
-			'status' => false
-		);
-
+	}
 	}
 
 	public function showHome()
@@ -38,20 +48,45 @@ class PostControl extends BaseController
 
 	public function showEdit()
 	{
-		return View::make('VPostEdit');
+		$id = Input::get('id');
+		$post = Post::find($id);
+
+		return View::make('VPostEdit',compact('post'));
 	}
 
-	public function editPost()
+	public function postEdit()
+	{
+		$validator = Validator::make(
+			Input::all(),
+			
+			array(
+    			'body_content' => 'required|min:10'
+    			)
+			);
+		if($validator->fails()){
+			return Redirect::to('edit')->withErrors($validator);
+		}else{
+			$id = Input::get('id');
+			$post = Post::find($id);
+
+			$post->body_content = Input::get('body_content');
+			if($post->save()){
+				return Redirect::to('home');
+			} 
+
+		}	
+	}
+
+	public function postDelete()
 	{
 		$id = Input::get('id');
 		$post = Post::find($id);
 
-		$post->body_content = Input::get('body_content');
-		if($post->save()){
+		if($post->delete()){
 			return array(
 				'status' => true
 			);
-		} 
+		}
 
 		return array(
 			'status' => false

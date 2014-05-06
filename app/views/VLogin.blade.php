@@ -1,35 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Login</title>
-</head>
-<body>
-<center>
-	<h2>Silahkan Login</h2>
-	@if(Session::has('pesan'))
+@extends('layout')
+@include('user_nav')
+@section('body-section')
+@section('body-section')
+<br>
+<br>
+<br>
+@if(Session::has('pesan'))
 	<div class="alert alert-success">{{ Session::get('pesan') }}</div>
-	@endif
-</center>
-<table align="center">
+@endif
 {{Form::open(array('action' => 'LoginControl@authen', 'method' => 'post')) }}
-
-	<tr>
-		<td>{{Form::label('username', 'Username') }}</td>
-		<td>{{Form::text('username',Input::old('username'),array('placeholder'=>'Input your username'))}}</td>
-	</tr>
-	<tr>
-		<td>{{Form::label('password', 'Password') }}</td>
-		<td>{{Form::password('password',array('placeholder'=>'Input your password'))}}</td>
-	</tr>
-	<tr>
-		<td align="right">{{Form::submit('Login') }}</td>
-		<td align="right"><a href="http://localhost/indomog-blog/public/">Home</a></td>
-	</tr>
-	{{Form::close() }}
+	{{ Form::hidden('csrf_token', Session::getToken()) }}
+	{{Form::label('username', 'Username') }}{{$errors->first('username')}}
+	{{Form::text('username','',array('class' => 'form-control','placeholder'=>'Input your username'))}}
 	
-</table>
-
-</center>
-</body>
-</html>
- 
+	{{Form::label('password', 'Password') }}{{$errors->first('password')}}
+	{{Form::password('password',array('class' => 'form-control','placeholder'=>'Input your password'))}}
+	<hr>
+	
+	{{Form::submit('Login') }}
+{{Form::close() }}
+@stop

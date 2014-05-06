@@ -1,26 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Add New Post</title>
-</head>
-<body>
-<h2 align="center"> Add New Post </h2>
-<center>
-	{{Form::open(array('action'=>'PostControl@savePost','method'=>'post'))}}
-	{{Form::label('title','Title')}}
-	{{Form::text('title')}}
-	<br>
-	{{Form::label('author','Author')}}
-	{{Form::text('author')}}
-	<br>
-	{{Form::label('body_content','Content')}}
-	{{Form::textarea('body_content')}}
-	<br>
-	{{Form::submit('save')}}
-	{{Form::close() }}
-	{{Form::open(array('action' => 'PostControl@showHomeBlog', 'method' => 'get')) }}
-	{{Form::submit('Home')}}
-	{{Form::close() }}
-</center>
-</body>
-</html>
+@extends('layout')
+@include('admin_nav')
+@section('body-section')
+<br>
+<br>
+{{Form::open(array('action'=>'PostControl@savePost','method'=>'post'))}}
+	{{ Form::label('title', 'Title :') }}{{$errors->first('title')}}
+    {{ Form::text('title', '',array('class' => 'form-control','placeholder'=>'Input title post')) }}
+
+    {{ Form::label('author', 'Author :') }}{{$errors->first('author')}}
+    {{ Form::text('author', '',array('class' => 'form-control','placeholder'=>'Input your username')) }}
+
+    {{ Form::label('body_content', 'Content:') }}{{$errors->first('body_content')}}
+    {{ Form::textarea('body_content','', array('class' => 'form-control','placeholder'=>'Input your Post')) }}
+     <hr>
+    {{ Form::submit('Submit', array('class' => 'btn')) }}
+
+    {{ Form::close() }}
+@stop

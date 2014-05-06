@@ -39,6 +39,12 @@ Route::get('post/add', 'PostControl@showAddPost');
 Route::post('post/add', 'PostControl@savePost');
 Route::get('comment/add', 'CommentControl@addComment');
 Route::post('comment/add', 'CommentControl@addComment');
-Route::get('pos/edit', 'PostControl@showEdit');
-Route::post('pos/edit', 'PostControl@editPost');
 Route::get('edit', array('as' => 'edit', 'uses' => 'PostControl@showEdit'));
+Route::post('edit', array('as' => 'edit', 'uses' => 'PostControl@postEdit'));
+Route::get('delete', array('as' => 'delete', 'uses' => 'PostControl@postDelete'));
+Route::post('delete', array('as' => 'delete', 'uses' => 'PostControl@postDelete'));
+Route::filter('auth',function()
+{
+	if(Auth::guest())
+		return Redirect::route('login');
+});

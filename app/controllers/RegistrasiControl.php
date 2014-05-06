@@ -1,6 +1,6 @@
 <?php
 
-class RegistrasiControl extends \BaseController {
+class RegistrasiControl extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -31,19 +31,30 @@ class RegistrasiControl extends \BaseController {
 	 */
 	public function store()
 	{
-
-		$login = new Login();
-		$login->username=Input::get('username');
-		$login->password=Input::get('password');
-		$login->email=Input::get('email');
-		if(($login->username || $login->password || $login->email)!=null ){
-			$login->save();
-			return Redirect::to('login')->with('pesan','Registrasi berhasil');
+		$validator = Validator::make(
+			Input::all(),
+			
+			array(
+    			'username' => 'required|min:3',
+    			'password' =>'required|min:6',
+    			'email' => 'required|email'
+    			)
+			);
+		if($validator->fails()){
+			return Redirect::to('regis')->withErrors($validator);
 		}else{
-			return Redirect::to('regis')->with('pesan','Registrasi gagal');
-		}
+			$regist = new Login();
+			$regist->username=Input::get('username');
+			$regist->password=Hash::make(Input::get('password'));
+			$regist->email=Input::get('email');
 
-		
+			if($regist->save() ){
+				return Redirect::to('login')->with('pesan','Registrasi berhasil');
+			}else{
+				return Redirect::to('regis')->with('pesan','Registrasi berhasil');
+			}
+
+		}	
 	}
 
 

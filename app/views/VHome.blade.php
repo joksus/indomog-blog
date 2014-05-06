@@ -1,27 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Home</title>
-</head>
-<body>
-<div align="right" >
-<a href="http://localhost/indomog-blog/public/login">Login</a>
-<a href="http://localhost/indomog-blog/public/regis">Registrasi</a>
-</div>
-<h2 align="center">Home indomog blog</h2>
-<table border="1" align="center">
-	<tr>
-		<td>Title</td>
-		<td>Author</td>
-		<td>Content</td>
-	</tr>
-	@foreach ($post as $po)
-	<tr>
-		<td>{{ $po->title }} </td>
-		<td> {{ $po->author }} </td>
-		<td> {{ $po->body_content }} 
-	</tr>
+@extends('layout')
+@include('user_nav')
+@section('body-section')
+@foreach ($post as $post)
+	{{Form::open()}}
+		<li style='visibility: hidden;'> {{ Form::text('id_post', $post->id) }} </li>
+		<h1> {{ $post->title }} </h1>
+		<p class="lead"> by {{ $post->author }} </p>
+		<hr>
+			<p> <span class="glyphicon glyphicon-time"></span> {{ $post->created_at }} <p>
+		<hr>
+		<p> {{ $post->body_content }} <p>
+			<hr>	
+	{{ Form::close() }}
+	@foreach ($post->comment as $c)
+		<h3> Animous <small>{{ $c->created_at}}</small></h3>
+		<p> {{ $c->comment }} </p>
+		<hr>
 	@endforeach
-</table>
-</body>
-</html>
+@endforeach
+@stop
