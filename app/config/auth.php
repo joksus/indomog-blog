@@ -42,7 +42,7 @@ return array(
 	*/
 
 	'table' => 'users',
-
+	'username' => 'username',
 	/*
 	|--------------------------------------------------------------------------
 	| Password Reminder Settings
@@ -59,7 +59,7 @@ return array(
 	*/
 
 	'reminder' => array(
-
+		'username'=>'username', 
 		'email' => 'emails.auth.reminder',
 
 		'table' => 'password_reminders',

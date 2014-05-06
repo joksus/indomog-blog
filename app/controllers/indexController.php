@@ -9,22 +9,40 @@ class IndexController extends BaseController
 		return View::make('index',compact('post'));
 	}
 
+
+	function singlePost()
+	{
+		$id = Input::get('id');
+		$post = Post::find($id);
+		return View::make('post',compact('post'));
+	}
+
 	function admin()
 	{
-		$post = Post::with('comments')->orderBy('id', 'DESC')->get();
-
-		return View::make('admin',compact('post'));
+			$post = Post::with('comments')->orderBy('id', 'DESC')->get();
+			return View::make('admin',compact('post'));
 	}
 
 	public function postNew()
 	{
-		$post = new Post();
-		$post->title = Input::get('title');
-		$post->author = Input::get('author');
-		$post->body_content = Input::get('body_content');
+		$validator = Validator::make(Input::all(),
+			array(
+				'title' => 'required',
+				'body_content' => 'required'
+			)
+		);
 
-		if($post->save()){
-			return Redirect::to('admin');
+		if($validator->fails()){
+			return Redirect::to('new')->withErrors($validator)->withInput();
+		} else {
+			$post = new Post();
+			$post->title = Input::get('title');
+			$post->author = Auth::user()->username;
+			$post->body_content = Input::get('body_content');
+
+			if($post->save()){
+				return Redirect::to('admin');
+			}
 		} 
 	}
 
@@ -58,27 +76,52 @@ class IndexController extends BaseController
 
 	public function postComment()
 	{
-		$comment = new Comment();
+		$validator = Validator::make(Input::all(),
+			array(
+				'comment' => 'required'
+			)
+		);
 
-		$comment->post_id = Input::get('id_post');
-		$comment->comment = Input::get('comment');
-		$comment->save();
-		return Redirect::to('/');	
+		if($validator->fails()){
+			$id = Input::get('id_post');
+			return Redirect::route('single', array('id' => $id))->withErrors($validator);
+		} else {
+			$comment = new Comment();
+			$comment->post_id = Input::get('id_post');
+			$comment->comment = Input::get('comment');
+			$comment->save();
+			$id = Input::get('id_post');
+			return Redirect::route('single', array('id' => $id));
+		}	
 	}
 
 	public function login()
 	{
-		$username = Input::get('username');
-		$password = Input::get('password');
+			$validator = Validator::make( Input::all(),
+			    array(
+			    	'username' => 'required',
+			    	'password' => 'required'
+			    	) 
+			);
 
-		$login = Login::where('username', '=', $username)
-					   ->where('password', '=', $password)
-					   ->first();
-
-		if($login){
-			return Redirect::to('admin');
-		} else {
-			return Redirect::to('login')->with('message', 'Login Failed, Incorrect Username or Password');
-		}	
+			if($validator->fails()){
+				return Redirect::to('login')->withErrors($validator)->withInput();
+			} else {
+				$userdata = array(
+					'username' 	=> Input::get('username'),
+					'password' 	=> Input::get('password')
+				);
+				if (Auth::attempt($userdata)) {
+					// Auth::user()->username
+					return Redirect::intended('admin');
+				} else {	 	
+				return Redirect::to('login')->with('message', 'Login Failed, Incorrect Username or Password');
+				}	
+			}
+	}
+	public function logout()
+	{
+		Auth::logout();
+		return Redirect::to('/');
 	}
 }

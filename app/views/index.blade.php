@@ -9,23 +9,10 @@
 		<hr>
 		<p> <span class="glyphicon glyphicon-time"></span> {{ $post->created_at }} <p>
 		<hr>
-		<p> {{ $post->body_content }} <p>
+		<p> {{ substr($post->body_content, 0 , 325); }} <p> 
+			{{ link_to_route('single', 'read more', array('id' => $post->id), array('class' => 'btn btn-info')) }} 
 		<hr>
-		<div class="well">
-                    <h4>Leave a Comment:</h4>
-                    <form role="form">
-                        <div class="form-group">
-                        	<textarea class="form-control" rows="3" id='comment'></textarea>
-                        </div>
-                        	{{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
-                    </form>
-        </div> 
-		{{ Form::close() }}
-		@foreach ($post->comments as $c)
-			<h3> Animous <small>{{ $c->created_at}}</small></h3>
-			<p> {{ $c->comment }} </p>
-			<hr>
-		@endforeach
+		
 	@endforeach
 
 @stop

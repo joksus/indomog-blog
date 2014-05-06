@@ -17,7 +17,7 @@
                     <h4>Leave a Comment:</h4>
                     <form role="form">
                         <div class="form-group">
-                        	<textarea class="form-control" rows="3" id='comment'></textarea>
+                        {{ Form::textarea('comment','', array('class' => 'form-control', 'rows' => '3')) }}
                         </div>
                         	{{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
                     </form>

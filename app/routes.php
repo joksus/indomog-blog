@@ -22,7 +22,12 @@ Route::post('comment', 'CommentController@postComment');
 Route::post('login', 'LoginController@login');
 // Route For Web View
 Route::get('/', 'IndexController@index');
-Route::get('admin', 'IndexController@admin');
+Route::get('single', array('as' => 'single', 'uses' => 'IndexController@singlePost'));
+Route::get('admin', array(
+					'uses' => 'IndexController@admin',
+					'before' => 'auth'
+					)
+			);
 Route::get('new', function()
 				{
 				    return View::make('newpost');
@@ -31,9 +36,13 @@ Route::get('login', function()
 				{
 				    return View::make('login');
 				});
+Route::get('logout','IndexController@logout');
 Route::post('web/new', 'IndexController@postNew');
 Route::post('web/comment', 'IndexController@postComment');
 Route::post('web/update', 'IndexController@postUpdate');
 Route::post('web/login', 'IndexController@login');
 Route::get('delete', array('as' => 'delete', 'uses' => 'IndexController@postDelete'));
 Route::get('edit', array('as' => 'edit', 'uses' => 'IndexController@postEdit'));
+
+Route::get('sub', 'App\\Controllers\\Web\\IndexController@index');
+
