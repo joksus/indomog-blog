@@ -19,11 +19,15 @@
         <form method="post" action="" class="forms">
             <h3>Tulis Artikel</h3>
             <label>
-                Judul Artikel <span class="error"><?php echo $errors->first('judul') ?></span>
-                <input type="text" name="judul" value="<?php echo Form::old('judul') ?>" class="width-50" />
+                Judul Artikel <span class="error"><?php echo $errors->first('title') ?></span>
+                <input type="text" name="judul" value="<?php echo Form::old('title') ?>" class="width-50" />
+            </label>
+             <label>
+                Author <span class="error"><?php echo $errors->first('author') ?></span>
+                <input type="text" name="author" value="<?php echo Form::old('author') ?>" class="width-50" />
             </label>
             <label>
-                Isi Artikel <span class="error"><?php echo $errors->first('isi') ?></span>
+                Isi Artikel <span class="error"><?php echo $errors->first('body_content') ?></span>
                 <textarea name="mytextarea" class="width-50" />
 						
 				</textarea>

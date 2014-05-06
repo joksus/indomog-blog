@@ -7,16 +7,18 @@ class ArtikelController extends BaseController
 		$validator = Validator::make(
         Input::all(),
         array(
-            "judul"                 => "required",
-            "isi"              => "required",
+            "title"                 => "required",
+            "author"              => "required",
+            "body_content"			=> "required",
         )
     );
 
 	if($validator->passes())
 	{
 		$artikel = new artikel();
-    	$artikel->judul    = Input::get('judul');
-    	$artikel->isi = Input::get('isi');
+    	$artikel->title    = Input::get('title');
+    	$artikel->author = Input::get('author');
+    	$artikel->body_content = Input::get('body_content');
     	$artikel->save();
 		
 		return Redirect::to("artikel");

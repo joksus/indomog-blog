@@ -7,15 +7,15 @@ class LoginController extends BaseController
 		$validator = Validator::make(
         Input::all(),
         array(
-            "email"                 => "required",
+            "username"                 => "required",
             "password"              => "required",
         )
         );
 
-		$email = Input::get('email');
+		$username = Input::get('username');
 		$password = Input::get('password');
 
-		$login = Login::where('email', '=', $email)
+		$login = Login::where('username', '=', $username)
 					   ->where('password', '=', $password)
 					   ->first();
 

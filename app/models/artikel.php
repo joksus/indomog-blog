@@ -2,5 +2,5 @@
 
 class artikel extends Eloquent
 {
-	protected $table='artikel';
+	protected $table ='post';
 }

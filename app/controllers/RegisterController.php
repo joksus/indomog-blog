@@ -7,8 +7,9 @@ class RegisterController extends BaseController
 		$validator = Validator::make(
         Input::all(),
         array(
-            "email"                 => "required|email|unique:users,email",
+            "usrname"               => "required",
             "password"              => "required|min:6",
+            "email"                 => "required|email|unique:users,email",
             "password_confirmation" => "same:password",
         )
     );
@@ -16,8 +17,9 @@ class RegisterController extends BaseController
 	if($validator->passes())
 	{
 		$user = new User;
+        $user->username    = Input::get('username');
+        $user->password = Input::get('password');
     	$user->email    = Input::get('email');
-    	$user->password = Input::get('password');
     	$user->save();
 
     return Redirect::to("login")->with('register_success', 'Selamat, Registrasi Berhasil, silakan cek email untuk aktivasi :P');

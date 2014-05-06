@@ -24,12 +24,16 @@
         <form method="post" action="" class="forms">
             <h3>Form Registrasi</h3>
             <label>
-                Email <span class="error"><?php echo $errors->first('email') ?></span>
-                <input type="text" name="email" value="<?php echo Form::old('email') ?>" class="width-50" />
+                Username <span class="error"><?php echo $errors->first('username') ?></span>
+                <input type="text" name="username" value="<?php echo Form::old('username') ?>" class="width-50" />
             </label>
             <label>
                 Password <span class="error"><?php echo $errors->first('password') ?></span>
                 <input type="password" name="password" value="<?php echo Form::old('password') ?>" class="width-50" />
+            </label>
+            <label>
+                Email <span class="error"><?php echo $errors->first('email') ?></span>
+                <input type="text" name="email" value="<?php echo Form::old('email') ?>" class="width-50" />
             </label>
             <label>
                 Password Confirmation <span class="error"><?php echo $errors->first('password_confirmation') ?></span>

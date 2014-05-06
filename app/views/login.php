@@ -17,8 +17,8 @@
         <form method="post" action="" class="forms">
             <h3>Form Login</h3>
             <label>
-                Email <span class="error"><?php echo $errors->first('email') ?></span>
-                <input type="text" name="email" value="<?php echo Form::old('email') ?>" class="width-50" />
+                Username <span class="error"><?php echo $errors->first('username') ?></span>
+                <input type="text" name="username" value="<?php echo Form::old('username') ?>" class="width-50" />
             </label>
             <label>
                 Password <span class="error"><?php echo $errors->first('password') ?></span>
