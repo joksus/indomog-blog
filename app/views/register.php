@@ -32,12 +32,12 @@
                 <input type="password" name="password" value="<?php echo Form::old('password') ?>" class="width-50" />
             </label>
             <label>
-                Email <span class="error"><?php echo $errors->first('email') ?></span>
-                <input type="text" name="email" value="<?php echo Form::old('email') ?>" class="width-50" />
-            </label>
-            <label>
                 Password Confirmation <span class="error"><?php echo $errors->first('password_confirmation') ?></span>
                 <input type="password" name="password_confirmation" value="<?php echo Form::old('password_confirmation') ?>" class="width-50" />
+            </label>
+            <label>
+                Email <span class="error"><?php echo $errors->first('email') ?></span>
+                <input type="text" name="email" value="<?php echo Form::old('email') ?>" class="width-50" />
             </label>
             <input type="submit" class="btn" value="Submit">
 
