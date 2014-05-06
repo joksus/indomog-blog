@@ -1,7 +1,9 @@
 @extends('layout')
 
 @section('content')
+
 <section class="container">
+<h1>Daftar Post</h1>
  <table class="table">
     <tr>
        <th>ID</th>
