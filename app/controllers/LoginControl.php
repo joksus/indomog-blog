@@ -18,24 +18,32 @@ class LoginControl extends BaseController
     		) 
 		);
 
-		if($validator->fails()){
+		if($validator->fails()) {
 			return Redirect::to('login')->withErrors($validator);
 		} else {
 			
-			$username = Input::get('username');
-			$password = Input::get('password');
+			$userdata = array(
+				'username' => Input::get('username'),
+				'password' => Input::get('password'),
+			);
 
-			$login = Login::where('username', '=', $username)
-					   ->where('password', '=', $password)
-					   ->first();
-
-			if($login){
-				return Redirect::to('home');
+			if (Auth::attempt($userdata)) {
+				// Auth::user()->username
+				return Redirect::intended('home');
 			} else {
 				return Redirect::to('login')
 					->with('pesan','username atau password salah');
 			}
 		}
+
 		
 	}
+	
+
+	public function logout()
+	{
+		Auth::logout();
+		return Redirect::to('/');
+	}
+
 }
