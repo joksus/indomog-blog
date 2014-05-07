@@ -19,6 +19,7 @@ class CommentControl extends BaseController
 
 			$comment->id_post = Input::get('id_post');
 			$comment->comment = Input::get('comment');
+			$comment->name_user = Input::get('name_user');
 
 			if($comment->save()){
 				return Redirect::to('home');

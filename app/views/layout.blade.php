@@ -1,8 +1,11 @@
  <!DOCTYPE HTML>
 <html>
 <head>
-     {{ HTML::style('css/bootstrap.css'); }}
+     {{ HTML::style('css/bootstrap.min.css'); }}
      {{ HTML::style('css/blog-post.css'); }}
+     <title>
+     	
+     </title>
 </head>
 <body>
 <h1>@yield('title-section')</h2>

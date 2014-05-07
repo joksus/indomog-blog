@@ -8,14 +8,16 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="http://localhost/indomog-blog/public/home">Indomog Blog</a>
+
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
+                    <li><a href="http://localhost/indomog-blog/public/profil"> {{ Auth::user()->username }}</a></li>
                     <li><a href="http://localhost/indomog-blog/public/post/add">New Post</a>
                     </li>
-                    <li><a href="http://localhost/indomog-blog/public/">Log out</a>
+                    <li> {{ link_to_route('logout', 'Logout') }} 
                     </li>
                 </ul>
             </div>

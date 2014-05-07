@@ -19,7 +19,8 @@ class LoginControl extends BaseController
 		);
 
 		if($validator->fails()) {
-			return Redirect::to('login')->withErrors($validator);
+			return Redirect::to('login')->withErrors($validator)
+										->withInput();
 		} else {
 			
 			$userdata = array(

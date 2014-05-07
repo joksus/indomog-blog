@@ -15,7 +15,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="http://localhost/indomog-blog/public/login">Log In</a>
                     </li>
-                    <li><a href="http://localhost/indomog-blog/public/regis">Register</a>
+                    <li><a href="http://localhost/indomog-blog/public/register">Register</a>
                     </li>
                 </ul>
             </div>

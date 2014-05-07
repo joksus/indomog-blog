@@ -28,13 +28,19 @@ Route::post('login', 'LoginController@login');
 
 
 
-Route::get('regis','RegistrasiControl@Registrasi');
+Route::get('register','RegistrasiControl@Registrasi');
 Route::post('store','RegistrasiControl@store');
 Route::get('login', 'LoginControl@showLogin');
 Route::post('auth', 'LoginControl@authen');
 
-Route::get('home','PostControl@showHomeBlog');
+Route::get('home', array(
+					'uses'=>'PostControl@showHomeBlog',
+					'before' => 'auth'
+				)
+			);
+
 Route::get('/','PostControl@showHome');
+Route::post('/','PostControl@showHome');
 Route::get('post/add', 'PostControl@showAddPost');
 Route::post('post/add', 'PostControl@savePost');
 Route::get('comment/add', 'CommentControl@addComment');
@@ -43,8 +49,10 @@ Route::get('edit', array('as' => 'edit', 'uses' => 'PostControl@showEdit'));
 Route::post('edit', array('as' => 'edit', 'uses' => 'PostControl@postEdit'));
 Route::get('delete', array('as' => 'delete', 'uses' => 'PostControl@postDelete'));
 Route::post('delete', array('as' => 'delete', 'uses' => 'PostControl@postDelete'));
-Route::filter('auth',function()
-{
-	if(Auth::guest())
-		return Redirect::route('login');
-});
+Route::get('logout', array('as' => 'logout', function () {
+    Auth::logout();
+    return Redirect::to('/');
+}));
+Route::get('profil','UserControl@showUser');
+
+

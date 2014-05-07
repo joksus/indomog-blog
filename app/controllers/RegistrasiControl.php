@@ -41,7 +41,8 @@ class RegistrasiControl extends BaseController {
     			)
 			);
 		if($validator->fails()){
-			return Redirect::to('regis')->withErrors($validator);
+			return Redirect::to('register')->withErrors($validator)
+										->withInput();
 		}else{
 			$regist = new Login();
 			$regist->username=Input::get('username');
@@ -51,7 +52,7 @@ class RegistrasiControl extends BaseController {
 			if($regist->save() ){
 				return Redirect::to('login')->with('pesan','Registrasi berhasil');
 			}else{
-				return Redirect::to('regis')->with('pesan','Registrasi berhasil');
+				return Redirect::to('register')->with('pesan','Registrasi berhasil');
 			}
 
 		}	

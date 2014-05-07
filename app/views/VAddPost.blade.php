@@ -8,7 +8,7 @@
     {{ Form::text('title', '',array('class' => 'form-control','placeholder'=>'Input title post')) }}
 
     {{ Form::label('author', 'Author :') }}{{$errors->first('author')}}
-    {{ Form::text('author', '',array('class' => 'form-control','placeholder'=>'Input your username')) }}
+    {{ Form::text('author', Auth::user()->username ,array('class' => 'form-control','placeholder'=>'Input your username','readonly'=>'readonly')) }}
 
     {{ Form::label('body_content', 'Content:') }}{{$errors->first('body_content')}}
     {{ Form::textarea('body_content','', array('class' => 'form-control','placeholder'=>'Input your Post')) }}

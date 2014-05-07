@@ -64,7 +64,7 @@ class PostControl extends BaseController
     			)
 			);
 		if($validator->fails()){
-			return Redirect::to('edit')->withErrors($validator);
+			return Redirect::to('post/edit')->withErrors($validator);
 		}else{
 			$id = Input::get('id');
 			$post = Post::find($id);
