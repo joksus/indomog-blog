@@ -1,8 +1,19 @@
 body {
 	margin-top: 100px; /* 100px is double the height of the navbar - I made it a big larger for some more space - keep it at 50px at least if you want to use the fixed top nav */
+	background-color: #ecf0f1;
 }
 
 footer {
 	margin: 50px 0;
+}
+
+.content {
+	background: #fff;
+	border-radius: 4px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+p {
+	text-align: justify;
 }
 

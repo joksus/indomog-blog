@@ -95,6 +95,16 @@ class IndexController extends BaseController
 		}	
 	}
 
+	public function deleteComment()
+	{
+		$id = Input::get('id');
+		$comment = Comment::find($id);
+
+		if($comment->delete()){
+			return Redirect::to('admin');
+		}
+	}
+
 	public function login()
 	{
 			$validator = Validator::make( Input::all(),

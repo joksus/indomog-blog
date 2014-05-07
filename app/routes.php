@@ -39,6 +39,7 @@ Route::get('login', function()
 Route::get('logout','IndexController@logout');
 Route::post('web/new', 'IndexController@postNew');
 Route::post('web/comment', 'IndexController@postComment');
+Route::get('web/comment/delete', array('as' => 'delete_comment', 'uses' => 'IndexController@deleteComment'));
 Route::post('web/update', 'IndexController@postUpdate');
 Route::post('web/login', 'IndexController@login');
 Route::get('delete', array('as' => 'delete', 'uses' => 'IndexController@postDelete'));
