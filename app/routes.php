@@ -32,10 +32,10 @@ Route::post('comment', 'IndexController@postComment');
 Route::get('single/{id}', array('as' => 'single', 'uses' => 'IndexController@singlePost'));
 
 // Route For Admin
+Route::post('login', 'IndexController@login');
 Route::group(array('prefix' => 'admin','before' => 'auth'), function()
 	{
 		Route::get('/', 'IndexController@admin');
-		Route::post('login', 'IndexController@login');
 		Route::post('update', 'IndexController@postUpdate');
 		Route::post('save', 'IndexController@postNew');
 		Route::get('comment/delete/{id}', array('as' => 'delete_comment', 'uses' => 'IndexController@deleteComment'));
