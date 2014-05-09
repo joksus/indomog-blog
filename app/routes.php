@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,39 +10,41 @@
 |
 */
 // Route for API
-Route::get('post', 'PostController@getIndex');
-Route::post('post', 'PostController@postNew');
-Route::post('post/delete', 'PostController@postDelete');
-Route::post('post/edit', 'PostController@postEdit');
+Route::group(array('prefix' => 'api'), function()
+	{
+		Route::get('post', 'PostController@getIndex');
+		Route::post('post', 'PostController@postNew');
+		Route::post('post/delete', 'PostController@postDelete');
+		Route::post('post/edit', 'PostController@postEdit');
+		Route::get('comment', 'CommentController@getComment');
+		Route::post('comment', 'CommentController@postComment');
+		Route::post('login', 'LoginController@login');
+	});
 
-Route::get('comment', 'CommentController@getComment');
-Route::post('comment', 'CommentController@postComment');
-
-Route::post('login', 'LoginController@login');
 // Route For Web View
 Route::get('/', 'IndexController@index');
-Route::get('single', array('as' => 'single', 'uses' => 'IndexController@singlePost'));
-Route::get('admin', array(
-					'uses' => 'IndexController@admin',
-					'before' => 'auth'
-					)
-			);
-Route::get('new', function()
-				{
-				    return View::make('newpost');
-				});
 Route::get('login', function()
 				{
 				    return View::make('login');
 				});
-Route::get('logout','IndexController@logout');
-Route::post('web/new', 'IndexController@postNew');
-Route::post('web/comment', 'IndexController@postComment');
-Route::get('web/comment/delete', array('as' => 'delete_comment', 'uses' => 'IndexController@deleteComment'));
-Route::post('web/update', 'IndexController@postUpdate');
-Route::post('web/login', 'IndexController@login');
-Route::get('delete', array('as' => 'delete', 'uses' => 'IndexController@postDelete'));
-Route::get('edit', array('as' => 'edit', 'uses' => 'IndexController@postEdit'));
 
-Route::get('sub', 'App\\Controllers\\Web\\IndexController@index');
+Route::post('comment', 'IndexController@postComment');
+Route::get('single/{id}', array('as' => 'single', 'uses' => 'IndexController@singlePost'));
+
+// Route For Admin
+Route::group(array('prefix' => 'admin','before' => 'auth'), function()
+	{
+		Route::get('/', 'IndexController@admin');
+		Route::post('login', 'IndexController@login');
+		Route::post('update', 'IndexController@postUpdate');
+		Route::post('save', 'IndexController@postNew');
+		Route::get('comment/delete/{id}', array('as' => 'delete_comment', 'uses' => 'IndexController@deleteComment'));
+		Route::get('delete/{id}', array('as' => 'delete', 'uses' => 'IndexController@postDelete'));
+		Route::get('edit/{id}', array('as' => 'edit', 'uses' => 'IndexController@getEdit'));
+		Route::get('logout','IndexController@logout');
+		Route::get('new', function()
+				{
+				    return View::make('newpost');
+				});
+	});
 

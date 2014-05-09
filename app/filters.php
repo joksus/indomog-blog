@@ -35,7 +35,10 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {	
-	if (Auth::guest()) return Redirect::guest('login')->with('message','You Must Log In First');
+	if (Auth::guest()) {
+		return Redirect::guest('login')
+						->with('message','You Must Log In First');
+	}
 });
 
 

@@ -2,7 +2,13 @@
 
 class IndexController extends BaseController 
 {
-	function index()
+
+	public function __construct()
+	{
+		//$this->beforeFilter('auth.basic', array('on' => 'get'));
+	}
+
+	public function index()
 	{
 		$post = Post::with('comments')->orderBy('id', 'DESC')->get();
 
@@ -10,14 +16,13 @@ class IndexController extends BaseController
 	}
 
 
-	function singlePost()
+	public function singlePost($id)
 	{
-		$id = Input::get('id');
 		$post = Post::find($id);
 		return View::make('post',compact('post'));
 	}
 
-	function admin()
+	public function admin()
 	{
 			$post = Post::with('comments')->orderBy('id', 'DESC')->get();
 			return View::make('admin',compact('post'));
@@ -46,10 +51,9 @@ class IndexController extends BaseController
 		} 
 	}
 
-	function postEdit()
+	public function getEdit($id)
 	{	
-		$id = Input::get('id');
-		$post = Post::find($id);
+		$post = Post::findOrFail($id);
 		return View::make('edit',compact('post'));
 	}
 
@@ -64,9 +68,8 @@ class IndexController extends BaseController
 		} 
 	}
 
-	public function postDelete()
+	public function postDelete($id)
 	{
-		$id = Input::get('id');
 		$post = Post::find($id);
 
 		if($post->delete()){
@@ -95,11 +98,9 @@ class IndexController extends BaseController
 		}	
 	}
 
-	public function deleteComment()
+	public function deleteComment($id)
 	{
-		$id = Input::get('id');
 		$comment = Comment::find($id);
-
 		if($comment->delete()){
 			return Redirect::to('admin');
 		}
