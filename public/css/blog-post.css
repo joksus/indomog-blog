@@ -17,3 +17,11 @@ p {
 	text-align: justify;
 }
 
+h1 a{
+	color: #2c3e50;
+}
+
+h1 a:hover{
+	color: #1F2429;
+	text-decoration: none;
+}

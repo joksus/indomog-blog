@@ -10,8 +10,7 @@ class IndexController extends BaseController
 
 	public function index()
 	{
-		$post = Post::with('comments')->orderBy('id', 'DESC')->get();
-
+		$post = Post::paginate(5);
 		return View::make('index',compact('post'));
 	}
 
