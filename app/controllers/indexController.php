@@ -10,7 +10,7 @@ class IndexController extends BaseController
 
 	public function index()
 	{
-		$post = Post::paginate(5);
+		$post = Post::orderBy('id', 'DESC')->paginate(5);
 		return View::make('index',compact('post'));
 	}
 
@@ -70,10 +70,15 @@ class IndexController extends BaseController
 	public function postDelete($id)
 	{
 		$post = Post::find($id);
-
-		if($post->delete()){
+		$comment = Comment::where('post_id', $id);
+		if($post->delete() && $comment->delete()){
 			return Redirect::to('admin');
 		}
+	}
+
+	public function getComment(){
+		$comment = Comment::orderBy('id', 'DESC')->get();
+		return View::make('comment', compact('comment'));
 	}
 
 	public function postComment()
@@ -101,7 +106,7 @@ class IndexController extends BaseController
 	{
 		$comment = Comment::find($id);
 		if($comment->delete()){
-			return Redirect::to('admin');
+			return Redirect::to('admin/comment');
 		}
 	}
 

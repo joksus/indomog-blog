@@ -1,7 +1,7 @@
 @extends('layout')
-@include('user_nav')
+@include('nav')
 @section('body-section')
-@section('body-section')
+<div class='content'>
 	@if(Session::has('message'))
 		<div class="alert alert-danger">{{ Session::get('message') }}</div>
 	@endif
@@ -14,4 +14,5 @@
 	{{ Form::submit('Submit', array('class' => 'btn')) }}
 
 	{{ Form::close() }}
+</div>
 @stop

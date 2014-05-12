@@ -7,15 +7,23 @@
                     <span class='icon-bar'></span>
                     <span class='icon-bar'></span>
                 </button>
-                <a class='navbar-brand' href='http://blog.local/admin'>Indomog Blog</a>
+                <a class='navbar-brand' href='http://blog.local'>Indomog Blog</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class='collapse navbar-collapse navbar-ex1-collapse'>
                 <ul class='nav navbar-nav'>
-                    <li><a href='http://blog.local/admin/new'>New Post</a>
+                    <li>
+                        <a href='http://blog.local/admin/new'>New Post</a>
                     </li>
-                    <li><a href='http://blog.local/admin/logout'>Log out</a>
+                    <li>
+                        <a href='http://blog.local/admin/'>Post</a>
+                    </li>
+                    <li>
+                        <a href='http://blog.local/admin/comment'>Comment</a>
+                    </li>
+                    <li>
+                        <a href='http://blog.local/admin/logout'>Log out</a>
                     </li>
                 </ul>
             </div>

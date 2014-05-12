@@ -7,6 +7,6 @@ class Comment extends Eloquent
 
 	public function post()
 	{
-		return $this->belongsTo('Post', 'id');
+		return $this->belongsTo('Post', 'post_id');
 	}
 }

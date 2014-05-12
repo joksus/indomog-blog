@@ -38,6 +38,7 @@ Route::group(array('prefix' => 'admin','before' => 'auth'), function()
 		Route::get('/', 'IndexController@admin');
 		Route::post('update', 'IndexController@postUpdate');
 		Route::post('save', 'IndexController@postNew');
+		Route::get('comment', 'IndexController@getComment');
 		Route::get('comment/delete/{id}', array('as' => 'delete_comment', 'uses' => 'IndexController@deleteComment'));
 		Route::get('delete/{id}', array('as' => 'delete', 'uses' => 'IndexController@postDelete'));
 		Route::get('edit/{id}', array('as' => 'edit', 'uses' => 'IndexController@getEdit'));

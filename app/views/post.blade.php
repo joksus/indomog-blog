@@ -1,5 +1,5 @@
 @extends('layout')
-@include('user_nav')
+@include('nav')
 @section('body-section')
 <div class='content'>
         {{Form::open(array('action' => 'IndexController@postComment', 'method' => 'post'))}}

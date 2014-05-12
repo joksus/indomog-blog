@@ -1,5 +1,5 @@
 @extends('layout')
-@include('user_nav')
+@include('nav')
 @section('body-section')
 
 	@foreach ($post as $p)
@@ -11,10 +11,8 @@
 		<hr>
 		<p> {{ substr($p->body_content, 0 , 325); }} <p> 
 			{{ link_to_route('single', 'read more', array('id' => $p->id), array('class' => 'btn btn-info')) }} 
-		<hr>
 	</div>	
 	@endforeach
 	{{ $post->links() }}
 @stop
-
 
