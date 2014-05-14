@@ -7,9 +7,11 @@
 	@endif
 	
 	{{Form::open(array('action' =>array('IndexController@login'),  'method' => 'post'))}}
-	{{ Form::label('username','Username : ')}} {{ $errors->first('username') }}
+	{{ Form::label('username','Username : ')}}
+	{{ "<span class='label label-warning'>",$errors->first('username'),"</span>" }}
 	{{ Form::text('username', '', array('class' => 'form-control'))}} <br>
-	{{ Form::label('password','Password : ')}} {{ $errors->first('password') }}
+	{{ Form::label('password','Password : ')}}
+	{{ "<span class='label label-warning'>",$errors->first('password'),"</span>" }}
 	{{ Form::password('password', array('class' => 'form-control'))}} <br>
 	{{ Form::submit('Submit', array('class' => 'btn')) }}
 

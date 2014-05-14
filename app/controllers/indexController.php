@@ -37,7 +37,7 @@ class IndexController extends BaseController
 		);
 
 		if($validator->fails()){
-			return Redirect::to('new')->withErrors($validator)->withInput();
+			return Redirect::to('admin/new')->withErrors($validator)->withInput();
 		} else {
 			$post = new Post();
 			$post->title = Input::get('title');
@@ -78,6 +78,7 @@ class IndexController extends BaseController
 
 	public function getComment(){
 		$comment = Comment::orderBy('id', 'DESC')->get();
+		//echo '<pre>',var_dump($comment->post->title);die;
 		return View::make('comment', compact('comment'));
 	}
 
@@ -85,7 +86,8 @@ class IndexController extends BaseController
 	{
 		$validator = Validator::make(Input::all(),
 			array(
-				'comment' => 'required'
+				'comment' => 'required',
+				'captcha' => 'required | captcha'
 			)
 		);
 
